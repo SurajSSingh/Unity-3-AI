@@ -8,7 +8,7 @@ abstract public class BaseNavMeshAI : MonoBehaviour
     protected Camera mainCamera;
     protected NavMeshAgent agent;
 
-    void Start()
+    void Awake()
     {
         if (mainCamera == null)
         {
