@@ -28,4 +28,14 @@ abstract public class BaseNavMeshAI : MonoBehaviour
 
 
     abstract public void UpdateAI();
+
+    virtual public bool CanUpdate()
+    {
+        return true;
+    }
+
+    virtual public void SetNewTarget(GameObject newTarget)
+    {
+        return;
+    }
 }

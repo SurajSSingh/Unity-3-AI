@@ -13,12 +13,15 @@ public class NMWaypointsAI : BaseNavMeshAI
     [SerializeField]
     private float transitionDistance = 0.01f;
 
+    //private float threshold = 0;
+
     [SerializeField]
     private bool isPathCyclic = true;
 
     private void Start()
     {
         agent.SetDestination(waypoints[0].position);
+        //threshold = transitionDistance * transitionDistance;
     }
 
     public override void UpdateAI()
@@ -30,8 +33,8 @@ public class NMWaypointsAI : BaseNavMeshAI
         }
 
         //Debug.Log(agent.remainingDistance);
-
-        if (agent.remainingDistance < transitionDistance)
+        //Debug.Log($"Dis: {SquareDistance()}");
+        if (agent.remainingDistance < transitionDistance )//&& SquareDistance() < threshold)
         {
             if (currentWaypoint >= waypoints.Count - 1)
             {
@@ -51,7 +54,6 @@ public class NMWaypointsAI : BaseNavMeshAI
             }
 
             agent.SetDestination(waypoints[currentWaypoint].position);
-            Debug.Log(agent.remainingDistance);
         }
     }
 
@@ -64,4 +66,13 @@ public class NMWaypointsAI : BaseNavMeshAI
                 waypoints[(i + 1) % waypoints.Count].position);
         }
     }
+
+    //private float SquareDistance()
+    //{
+    //    Vector2 current = new Vector2(transform.position.x, transform.position.z);
+    //    Vector2 destination = new Vector2(waypoints[currentWaypoint].position.x,
+    //                                      waypoints[currentWaypoint].position.z);
+
+    //    return Vector2.SqrMagnitude(current-destination);
+    //}
 }
