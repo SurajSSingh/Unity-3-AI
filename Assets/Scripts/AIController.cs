@@ -10,6 +10,7 @@ public class AIController : MonoBehaviour
     public BaseNavMeshAI patrolState;
     public BaseNavMeshAI chaseState;
 
+    public GameObject bcPrefab;
 
     void Start()
     {
@@ -26,13 +27,28 @@ public class AIController : MonoBehaviour
             playerFound = other.gameObject;
             chaseState.SetNewTarget(playerFound);
         }
+        else if (playerFound == null && other.GetComponent<BreadcrumbScript>() != null)
+        {
+            playerFound = other.gameObject;
+            chaseState.SetNewTarget(playerFound);
+        }
+        else if (playerFound != null &&
+                 playerFound.GetComponent<BreadcrumbScript>() != null &&
+                 other.GetComponent<BreadcrumbScript>() != null)
+        {
+            playerFound = other.gameObject;
+            chaseState.SetNewTarget(playerFound);
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            playerFound = null;
+            playerFound = Instantiate(bcPrefab, other.gameObject.transform.position,
+                                                other.gameObject.transform.rotation);
+            chaseState.SetNewTarget(playerFound);
+            playerFound.GetComponent<BreadcrumbScript>().DelayedDestroy(2);
         }
     }
 

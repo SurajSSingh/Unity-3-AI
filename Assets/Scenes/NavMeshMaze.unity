@@ -845,6 +845,7 @@ GameObject:
   - component: {fileID: 1280382371}
   - component: {fileID: 1280382372}
   - component: {fileID: 1280382373}
+  - component: {fileID: 1280382374}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1092,6 +1093,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &1280382374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280382364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e87fbd2ebed48a8a67b51c1e4f0559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bcPrefab: {fileID: 3623704616619692209, guid: 028a60d0590964285a044a50723ea261,
+    type: 3}
+  spawnTimer: 1.5
+  destroyTimer: 3
 --- !u!1 &1392493994
 GameObject:
   m_ObjectHideFlags: 0
@@ -1276,6 +1293,7 @@ MonoBehaviour:
   playerFound: {fileID: 0}
   patrolState: {fileID: 1848370248}
   chaseState: {fileID: 1848370256}
+  bcPrefab: {fileID: 0}
 --- !u!135 &1848370250
 SphereCollider:
   m_ObjectHideFlags: 0
