@@ -48,7 +48,7 @@ public class AIController : MonoBehaviour
             playerFound = Instantiate(bcPrefab, other.gameObject.transform.position,
                                                 other.gameObject.transform.rotation);
             chaseState.SetNewTarget(playerFound);
-            playerFound.GetComponent<BreadcrumbScript>().DelayedDestroy(2);
+            playerFound.GetComponent<BreadcrumbScript>().DelayedDestroy(1);
         }
     }
 
