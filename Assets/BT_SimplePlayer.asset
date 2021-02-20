@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a7c8ca992f915438a96c2077353778, type: 3}
+  m_Name: BT_SimplePlayer
+  m_EditorClassIdentifier: 
+  brickName: Assets/BT_SimplePlayer.asset
+  xml: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<BehaviorBricks xmlns:ref=\"urn:padaone\"
+    version=\"1.0\">\n  <BehaviorTree id=\"0\" />\n  <runtimeInfo>\n    <BehaviorTree
+    id=\"0\" guid=\"5e659dad2e17a4744bbb5524ed3bd09d\" nextId=\"7\">\n      <root>\n       
+    <RepeatDecorator id=\"1\" />\n      </root>\n      <inputParams>\n        <inputValues>\n         
+    <entry name=\"camera\" type=\"UnityEngine.Camera\" isBlackboard=\"False\" />\n         
+    <entry name=\"mask\" type=\"UnityEngine.LayerMask\" isBlackboard=\"False\" />\n       
+    </inputValues>\n      </inputParams>\n      <outputParams>\n        <outputValues>\n         
+    <entry name=\"selectedGameObject\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
+    />\n          <entry name=\"selectedPosition\" type=\"UnityEngine.Vector3\" isBlackboard=\"True\"
+    />\n        </outputValues>\n      </outputParams>\n      <localParams />\n   
+    </BehaviorTree>\n    <RepeatDecorator id=\"1\" loops=\"-1\" policy=\"ContinueWhenChildFails\">\n     
+    <child>\n        <SequenceNode id=\"2\" />\n      </child>\n      <inputParams
+    />\n      <outputParams />\n      <localParams />\n    </RepeatDecorator>\n   
+    <SequenceNode id=\"2\">\n      <children>\n        <elem>\n          <ConditionNode
+    id=\"4\" />\n        </elem>\n        <elem>\n          <ActionNode id=\"5\"
+    />\n        </elem>\n        <elem>\n          <ActionNode id=\"6\" />\n       
+    </elem>\n      </children>\n      <inputParams />\n      <outputParams />\n     
+    <localParams />\n    </SequenceNode>\n    <ConditionNode id=\"4\">\n      <condition>\n       
+    <ConditionEvalNode id=\"0\" />\n      </condition>\n      <inputParams>\n       
+    <inputValues>\n          <entry name=\"button\" type=\"BBCore.Conditions.CheckMouseButton+MouseButton\"
+    isBlackboard=\"False\" value=\"left\" />\n        </inputValues>\n      </inputParams>\n     
+    <outputParams />\n      <localParams />\n    </ConditionNode>\n    <ActionNode
+    id=\"5\" action=\"Physics/FromMouseToWorld\">\n      <inputParams>\n        <inputValues>\n         
+    <entry name=\"camera\" type=\"UnityEngine.Camera\" isBlackboard=\"True\" blackboard=\"camera\"
+    />\n          <entry name=\"mask\" type=\"UnityEngine.LayerMask\" isBlackboard=\"True\"
+    blackboard=\"mask\" />\n        </inputValues>\n      </inputParams>\n      <outputParams>\n       
+    <outputValues>\n          <entry name=\"selectedGameObject\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"selectedGameObject\" />\n          <entry
+    name=\"selectedPosition\" type=\"UnityEngine.Vector3\" isBlackboard=\"True\"
+    blackboard=\"selectedPosition\" />\n        </outputValues>\n      </outputParams>\n     
+    <localParams />\n    </ActionNode>\n    <ActionNode id=\"6\" action=\"Navigation/MoveToPosition\">\n     
+    <inputParams>\n        <inputValues>\n          <entry name=\"target\" type=\"UnityEngine.Vector3\"
+    isBlackboard=\"True\" blackboard=\"selectedPosition\" />\n        </inputValues>\n     
+    </inputParams>\n      <outputParams />\n      <localParams />\n    </ActionNode>\n   
+    <ConditionEvalNode id=\"0\" policy=\"ATOMIC_CHECK\" name=\"Basic/CheckMouseButton\">\n     
+    <inputParams />\n      <outputParams />\n      <localParams />\n    </ConditionEvalNode>\n 
+    </runtimeInfo>\n  <editorInfo>\n    <BehaviorTree id=\"0\" _name=\"BT_SimplePlayer\"
+    _description=\"Simple Player Controller\" _removeIfClosed=\"False\">\n      <_rootList>\n       
+    <elem>\n          <RepeatDecorator id=\"1\" />\n        </elem>\n        <elem>\n         
+    <SequenceNode id=\"2\" />\n        </elem>\n        <elem>\n          <ConditionNode
+    id=\"4\" />\n        </elem>\n        <elem>\n          <ActionNode id=\"5\"
+    />\n        </elem>\n        <elem>\n          <ActionNode id=\"6\" />\n       
+    </elem>\n      </_rootList>\n      <_nodes>\n        <nodes>\n          <RepeatDecorator
+    id=\"1\" />\n          <SequenceNode id=\"2\" />\n          <ConditionNode id=\"4\"
+    />\n          <ActionNode id=\"5\" />\n          <ActionNode id=\"6\" />\n       
+    </nodes>\n      </_nodes>\n    </BehaviorTree>\n    <RepeatDecorator id=\"1\">\n     
+    <_data>\n        <data breakpoint=\"0\" selected=\"False\" position=\"299.0834
+    247.3452\" name=\"Repeat\" description=\"Repeats the execution of its child node\"
+    cardinality=\"1\" hasParent=\"False\">\n          <BehaviorTree id=\"0\" />\n         
+    <RepeatDecorator id=\"1\" />\n        </data>\n      </_data>\n    </RepeatDecorator>\n   
+    <SequenceNode id=\"2\">\n      <_data>\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"254.512 390.381\" name=\"Sequence\" description=\"Executes all its
+    children in sequence until all of them are successful\" cardinality=\"-1\" hasParent=\"True\">\n         
+    <BehaviorTree id=\"0\" />\n          <SequenceNode id=\"2\" />\n          <RepeatDecorator
+    id=\"1\" />\n        </data>\n      </_data>\n    </SequenceNode>\n    <ConditionNode
+    id=\"4\">\n      <_data>\n        <data breakpoint=\"0\" selected=\"False\" position=\"22.09171
+    568.5756\" name=\"Basic/CheckMouseButton\" description=\"Checks whether a mouse
+    button is pressed\" cardinality=\"0\" hasParent=\"True\">\n          <BehaviorTree
+    id=\"0\" />\n          <ConditionNode id=\"4\" />\n          <SequenceNode id=\"2\"
+    />\n        </data>\n      </_data>\n    </ConditionNode>\n    <ActionNode id=\"5\">\n     
+    <_data>\n        <data breakpoint=\"0\" selected=\"False\" position=\"267.4766
+    559.8257\" name=\"Physics/FromMouseToWorld\" description=\"Gets the game object
+    and position that is under the mouse cursor\" cardinality=\"0\" hasParent=\"True\">\n         
+    <BehaviorTree id=\"0\" />\n          <ActionNode id=\"5\" />\n          <SequenceNode
+    id=\"2\" />\n        </data>\n      </_data>\n    </ActionNode>\n    <ActionNode
+    id=\"6\">\n      <_data>\n        <data breakpoint=\"0\" selected=\"False\" position=\"525.9531
+    580.2145\" name=\"Navigation/MoveToPosition\" description=\"Moves the game object
+    to a given position by using a NavMeshAgent\" cardinality=\"0\" hasParent=\"True\">\n         
+    <BehaviorTree id=\"0\" />\n          <ActionNode id=\"6\" />\n          <SequenceNode
+    id=\"2\" />\n        </data>\n      </_data>\n    </ActionNode>\n    <ConditionEvalNode
+    id=\"0\">\n      <_data>\n        <data breakpoint=\"0\" selected=\"False\" position=\"0
+    0\" name=\"AlwaysTrue\" description=\"Eval\" cardinality=\"1\" hasParent=\"False\">\n         
+    <BehaviorTree id=\"0\" />\n        </data>\n      </_data>\n    </ConditionEvalNode>\n 
+    </editorInfo>\n</BehaviorBricks>"
+  zoom: 0.5
+  subslist: []
+  _guid: 5e659dad2e17a4744bbb5524ed3bd09d
