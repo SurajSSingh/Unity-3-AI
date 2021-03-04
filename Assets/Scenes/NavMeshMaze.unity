@@ -624,8 +624,10 @@ MonoBehaviour:
     colorParamsLostDefaultValue: 
     objectParams:
     - {fileID: 1392493996}
+    - {fileID: 395418450}
     objectParamsNames:
     - camera
+    - PlayerNavAgent
     objectParamsLostDefaultValue: 
     layerMaskParams:
     - serializedVersion: 2
