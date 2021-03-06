@@ -10,22 +10,13 @@ public class PlayerNavAgentStoppedCheck : ConditionBase
     [InParam("PlayerNavAgent")]
     public UnityEngine.AI.NavMeshAgent navAgent;
 
-    private bool alreadyChecked;
-
     public override bool Check()
     {
+        // Did we reach destination?
         if (navAgent == null)
         {
             return false;
         }
-        if (alreadyChecked)
-        {
-
-        }
-        else
-        {
-
-        }
-        return navAgent.isStopped;
+        return navAgent.remainingDistance < navAgent.stoppingDistance;
     }
 }
