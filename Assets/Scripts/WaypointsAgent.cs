@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class WaypointsAgent : MonoBehaviour
@@ -21,6 +22,11 @@ public class WaypointsAgent : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     [SerializeField] List<Vector3> waypoints = new List<Vector3>();
     [SerializeField] int current = 0;
+
+    public List<Vector3> GetWaypoints => waypoints;
+    public UnityEvent OnClearedWaypoints = new UnityEvent();
+    [System.Serializable] public class UnityEvent_Vector3: UnityEvent<Vector3>{}
+    public UnityEvent_Vector3 OnWaypointsAdded = new UnityEvent_Vector3();
 
     private Camera cam;
 
@@ -52,6 +58,9 @@ public class WaypointsAgent : MonoBehaviour
                 {
                     // Add a new waypoint to the list of waypoints
                     waypoints.Add(hit.point);
+                    OnWaypointsAdded?.Invoke(hit.point);
+                    // x?.DoSomthing();
+                    // same as if(x != null) x.DoSomething();
                 }
                 // You just click (no shift+click)
                 else
@@ -59,6 +68,7 @@ public class WaypointsAgent : MonoBehaviour
                     // Set agent to new destination and clear out old waypoints
                     agent.SetDestination(hit.point);
                     waypoints.Clear();
+                    OnClearedWaypoints?.Invoke();
                 }
             }
         }
