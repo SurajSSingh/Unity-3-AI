@@ -15,7 +15,11 @@ public class SimpleAI : MonoBehaviour
     public bool runLerp = false;
     public bool runSmoothDamp = false;
 
-    UnityEvent x;
+    public UnityEvent unityEvent; // Both code and inspector
+    public MyCustomEventWithString OnShowMessageWithTime;
+
+    public bool showMessage = false;
+
     void Update()
     {
         if(target != null)
@@ -41,5 +45,20 @@ public class SimpleAI : MonoBehaviour
             }                        
 
         }
+
+        if(showMessage)
+        {
+            unityEvent?.Invoke();
+            OnShowMessageWithTime?.Invoke($"{Time.time}");
+            /*
+            if(unityEvent != null)
+            {
+                unityEvent.Invoke();
+            }
+            */
+            showMessage = false;
+        }
     }
 }
+
+[System.Serializable] public class MyCustomEventWithString: UnityEvent<string>{}
