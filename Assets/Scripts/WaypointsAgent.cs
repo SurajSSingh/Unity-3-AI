@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class WaypointsAgent : MonoBehaviour
+public class WaypointsAgent : BaseAI
 {
     /*
         Nav Mesh Agent for the AI
@@ -19,7 +19,7 @@ public class WaypointsAgent : MonoBehaviour
 
     */
 
-    [SerializeField] NavMeshAgent agent;
+    // [SerializeField] NavMeshAgent agent;
     [SerializeField] List<Vector3> waypoints = new List<Vector3>();
     [SerializeField] int current = 0;
 
@@ -32,13 +32,31 @@ public class WaypointsAgent : MonoBehaviour
 
     void Start()
     {
+        // agent = GetComponent<NavMeshAgent>();
+        // cam = Camera.main;
+        AgentStart();
+    }
+
+    public override void AgentStart()
+    {
         agent = GetComponent<NavMeshAgent>();
         cam = Camera.main;
     }
 
     void Update()
     {
-        HandleInput();
+        // HandleInput();
+        // CheckAgent();
+        AgentUpdate();
+    }
+
+    public bool isPlayerAgent = true;
+    public override void AgentUpdate()
+    {
+        if(isPlayerAgent)
+        {
+            HandleInput();
+        }
         CheckAgent();
     }
 
