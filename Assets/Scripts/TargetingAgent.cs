@@ -9,6 +9,9 @@ public class TargetingAgent : BaseAI
     [SerializeField] private GameObject currentTarget;
     [SerializeField] private List<GameObject> targetList = new List<GameObject>();
     [SerializeField] private string targetTag = "Player";
+
+    public bool HasTarget => currentTarget != null;
+
     void Awake() // Orignially Start
     {
         AgentStart();
