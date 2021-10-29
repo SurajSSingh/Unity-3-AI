@@ -45,9 +45,10 @@ public class WaypointsAgent : BaseAI
 
     void Update()
     {
-        // HandleInput();
-        // CheckAgent();
-        AgentUpdate();
+        if(this.IsUpdating)
+        {
+            AgentUpdate();
+        }
     }
 
     public bool isPlayerAgent = true;
