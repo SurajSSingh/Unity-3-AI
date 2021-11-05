@@ -9,6 +9,7 @@ public class TargetingAgent : BaseAI
     [SerializeField] private GameObject currentTarget;
     [SerializeField] private List<GameObject> targetList = new List<GameObject>();
     [SerializeField] private string targetTag = "Player";
+    [SerializeField] bool autoUpdate = false;
 
     public bool HasTarget => currentTarget != null;
 
@@ -24,7 +25,7 @@ public class TargetingAgent : BaseAI
 
     void Update()
     {
-        if(IsUpdating) // Using the "getter" for isUpdating
+        if(IsUpdating || autoUpdate) // Using the "getter" for isUpdating
         {
             AgentUpdate();
         }
@@ -33,7 +34,7 @@ public class TargetingAgent : BaseAI
     public override void AgentUpdate()
     {
         // We have no target right now
-        if(currentTarget is null)
+        if(!HasTarget)
         {
             // We have some others we can go to
             if(targetList.Count > 0)
@@ -50,6 +51,11 @@ public class TargetingAgent : BaseAI
                 IsUpdating = false; // Using the "setter" for isUpdating
             }
         }
+        // Otherwise, set the destination to the current target's position
+        else
+        {
+            agent.SetDestination(currentTarget.transform.position);
+        }
     }
 
     private void OnTriggerEnter(Collider other) 
@@ -65,7 +71,14 @@ public class TargetingAgent : BaseAI
     {
          if(other.CompareTag(targetTag))
         {
-            targetList.Remove(other.gameObject);
+            if(targetList.Contains(other.gameObject))
+            {
+                targetList.Remove(other.gameObject);
+            }
+            if(currentTarget == other.gameObject)
+            {
+                currentTarget = null;
+            }
             AgentUpdate();
         }
     }
