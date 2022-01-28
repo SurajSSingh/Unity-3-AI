@@ -32,8 +32,6 @@ public class OxygenHandler : MonoBehaviour
         {
             LosingOxygen = StartCoroutine(LosingOxygenCoroutine());
         }   
-        Cursor.lockState = CursorLockMode.Locked;   // Locked to the camera view
-        Cursor.lockState = CursorLockMode.None;     // Mouse is free from camera view (unlocked)
     }
 
 
